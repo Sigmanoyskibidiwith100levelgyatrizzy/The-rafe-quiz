@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rafe Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .quiz-container {
+            margin: 0 auto;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin: 0 0 10px;
+        }
+        .answer-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .answer-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background-color: #e0e0e0;
+        }
+        .answer-buttons button:hover {
+            background-color: #d0d0d0;
+        }
+        #done-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #done-button:hover {
+            background-color: #45a049;
+        }
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Rafe Quiz</h1>
+    <div class="quiz-container">
+        <div id="quiz">
+            <div class="question" id="question-1">
+                <h3>1. Do you like my hair?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(1, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(1, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-2">
+                <h3>2. Do you think I'm Sigma?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(2, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(2, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-3">
+                <h3>3. Am I Skibidi?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(3, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(3, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-4">
+                <h3>4. Do I have level 10 Gyat?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(4, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(4, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-5">
+                <h3>5. Do I have a crush on Haize?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(5, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(5, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-6">
+                <h3>6. Do I like Cherrymae?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(6, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(6, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-7">
+                <h3>7. Do I play Call of Duty?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(7, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(7, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-8">
+                <h3>8. Am I friends with Ethan?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(8, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(8, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-9">
+                <h3>9. Am I friends with Clark?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(9, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(9, 'no')">No</button>
+                </div>
+            </div>
+            <div class="question" id="question-10">
+                <h3>10. Am I friends with Cabil?</h3>
+                <div class="answer-buttons">
+                    <button onclick="answerQuestion(10, 'yes')">Yes</button>
+                    <button onclick="answerQuestion(10, 'no')">No</button>
+                </div>
+            </div>
+        </div>
+
+        <button id="done-button" onclick="showResults()">Done</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Store the answers
+        const correctAnswers = {
+            1: 'yes',
+            2: 'yes',
+            3: 'yes',
+            4: 'yes',
+            5: 'no',
+            6: 'yes',
+            7: 'yes',
+            8: 'yes',
+            9: 'yes',
+            10: 'no'
+        };
+
+        // Track the user's answers
+        let userAnswers = {};
+
+        function answerQuestion(questionNumber, answer) {
+            userAnswers[questionNumber] = answer;
+        }
+
+        function showResults() {
+            let score = 0;
+            // Check the answers
+            for (let i = 1; i <= 10; i++) {
+                if (userAnswers[i] === correctAnswers[i]) {
+                    score++;
+                }
+            }
+
+            // Display the result
+            const resultDiv = document.getElementById('result');
+            if (score === 10) {
+                resultDiv.innerHTML = 'YOUR SIGMA!!';
+            } else {
+                resultDiv.innerHTML = `L Rizz. You got ${score} out of 10 correct.`;
+            }
+        }
+    </script>
+</body>
+</html>
